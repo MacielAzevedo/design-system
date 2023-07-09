@@ -17,13 +17,11 @@ jobs:
         with:
           node-version: 18.16.1
 
-      - name: Run CI
-        run: npm ci
-
-      - name: Run build
-        run: npm build
+      - run: npm ci
+      
+      - run: npm build
 
       - name: Deploy storybook
-        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
+        run: npm run deploy-storybook -- --ci --existing-output-dir=./packages/docs/storybook-static
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
